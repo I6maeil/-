@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualités & Agenda - Association Chaâla</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .page-header {
+      height: 40vh;
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=2070&auto=format&fit=crop') center/cover;
+      display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding-top: 60px;
+    }
+    
+    /* ── News Grid ── */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .news-card {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      display: flex; flex-direction: column;
+      transition: var(--transition);
+      cursor: default;
+    }
+    .news-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+    }
+    .news-img-wrapper {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    .news-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .news-card:hover .news-img-wrapper img {
+      transform: scale(1.05);
+    }
+    .news-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+    .category-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background-color: var(--color-accent);
+      color: white;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);
+      z-index: 2;
+    }
+    .news-content {
+      padding: 25px;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    .news-date { color: var(--color-accent); font-weight: 600; font-size: 0.9rem; margin-bottom: 10px; }
+    .news-content h3 { margin-bottom: 15px; font-size: 1.3rem; }
+    .news-content p { color: var(--color-text-light); margin-bottom: 20px; flex: 1; }
+    .read-more {
+      color: var(--color-primary);
+      font-weight: bold;
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 0;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .read-more:hover { color: var(--color-accent); transform: translateX(4px); }
+    .read-more i { transition: transform 0.3s ease; }
+    .read-more:hover i { transform: translateX(4px); }
+
+    /* ── Agenda ── */
+    .agenda-card {
+      display: flex;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .agenda-card:hover { transform: translateX(10px); }
+    .agenda-date-box {
+      background: var(--color-primary);
+      color: white;
+      padding: 20px;
+      min-width: 120px;
+      text-align: center;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .agenda-date-box .day { font-size: 2.5rem; font-weight: bold; line-height: 1; }
+    .agenda-date-box .month { font-size: 1.1rem; text-transform: uppercase; }
+    .agenda-details { padding: 20px 30px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .agenda-details h3 { margin-bottom: 10px; }
+    .agenda-meta { display: flex; gap: 20px; color: var(--color-text-light); font-size: 0.9rem; margin-bottom: 15px; }
+    .agenda-meta i { color: var(--color-accent); margin-right: 5px; }
+    
+    @media (max-width: 600px) {
+      .agenda-card { flex-direction: column; }
+      .agenda-date-box { padding: 10px; flex-direction: row; gap: 10px; align-items: baseline; }
+      .agenda-card:hover { transform: translateY(-5px); }
+    }
+
+    /* ════════════════════════════════════════════
+       ARTICLE DETAIL MODAL
+       ════════════════════════════════════════════ */
+    .article-modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      padding: 20px;
+    }
+    .article-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .article-modal {
+      background: white;
+      border-radius: 16px;
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(40px) scale(0.95);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+    .article-modal-overlay.active .article-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    /* Scrollbar styling */
+    .article-modal::-webkit-scrollbar { width: 6px; }
+    .article-modal::-webkit-scrollbar-track { background: transparent; }
+    .article-modal::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    .article-modal::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    /* Close button */
+    .modal-close-btn {
+      position: sticky;
+      top: 0;
+      float: right;
+      z-index: 10;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      width: 44px; height: 44px;
+      border-radius: 0 16px 0 12px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+    .modal-close-btn:hover {
+      background: var(--color-accent);
+    }
+
+    /* Modal header image */
+    .modal-hero {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      border-radius: 16px 16px 0 0;
+    }
+    .modal-hero img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .modal-hero-gradient {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent);
+    }
+    .modal-hero-badge {
+      position: absolute;
+      top: 20px; left: 20px;
+      background: var(--color-accent);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);
+    }
+    .modal-hero-title {
+      position: absolute;
+      bottom: 25px; left: 30px; right: 30px;
+      color: white;
+      font-family: var(--font-heading-ar);
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-align: right;
+      direction: rtl;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+
+    /* Modal body */
+    .modal-body {
+      padding: 35px 40px 40px;
+    }
+    .modal-date-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .modal-date-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--color-accent), #f97316);
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .modal-date-text {
+      font-weight: 600;
+      color: var(--color-text);
+      font-size: 1rem;
+    }
+
+    /* Photo grid */
+    .modal-photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 30px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .modal-photo-item {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .modal-photo-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .modal-photo-item:hover img {
+      transform: scale(1.08);
+    }
+    .modal-photo-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.3), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-photo-item:hover::after {
+      opacity: 1;
+    }
+    .photo-zoom-icon {
+      position: absolute;
+      bottom: 10px; right: 10px;
+      background: rgba(255,255,255,0.9);
+      color: var(--color-primary);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+    .modal-photo-item:hover .photo-zoom-icon {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Article text */
+    .modal-article-text {
+      font-family: var(--font-body-ar);
+      direction: rtl;
+      text-align: right;
+      font-size: 1.15rem;
+      line-height: 2;
+      color: var(--color-text);
+      background: #f8fafc;
+      padding: 30px;
+      border-radius: 12px;
+      border-right: 4px solid var(--color-accent);
+      position: relative;
+    }
+    .modal-article-text::before {
+      content: '\201D';
+      position: absolute;
+      top: -5px; right: 20px;
+      font-size: 5rem;
+      color: var(--color-accent);
+      opacity: 0.15;
+      font-family: serif;
+      line-height: 1;
+    }
+
+    /* Responsive modal */
+    @media (max-width: 768px) {
+      .modal-hero { height: 220px; }
+      .modal-hero-title { font-size: 1.25rem; left: 20px; right: 20px; bottom: 15px; }
+      .modal-body { padding: 25px 20px 30px; }
+      .modal-photo-grid { gap: 8px; }
+      .modal-article-text { padding: 20px; font-size: 1.05rem; }
+    }
+    @media (max-width: 480px) {
+      .modal-photo-grid { grid-template-columns: 1fr; }
+      .modal-hero { height: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <div class="logo-container">
+        <i class="fa-solid fa-fire-flame-curved logo-icon"></i>
+        <div class="logo-text">Association<br>Chaâla</div>
+      </div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="about.html" class="nav-link">À propos</a>
+        <a href="activities.html" class="nav-link">Activités</a>
+        <a href="gallery.html" class="nav-link">Galerie</a>
+        <a href="news.html" class="nav-link active">Actualités</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <button class="lang-switch">العربية</button>
+        <a href="join.html" class="btn btn-primary" style="margin-left: 15px;">Nous rejoindre</a>
+      </nav>
+      <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container" data-aos="fade-up">
+      <h1>Actualités & Agenda</h1>
+      <p style="font-family: var(--font-heading-ar); color: var(--color-accent); font-size: 1.5rem;">الأخبار والفعاليات</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Dernières Actualités</h2>
+
+      <div class="news-grid">
+
+        <!-- ═══ CARD 1 — Formation IA Cinéma ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="100" id="cardFormationIA">
+          <div class="news-img-wrapper">
+            <img src="./images/formation/photo1.jpg" alt="دورة تكوينية — إدماج الذكاء الاصطناعي في مهن السينما">
+            <span class="category-badge">Formation</span>
+          </div>
+          <div class="news-content">
+            <span class="news-date">19 Mai 2026</span>
+            <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right;">دورة تكوينية — "إدماج الذكاء الاصطناعي في مهن السينما"</h3>
+            <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right;">شارك منخرطو الجمعية في دورة تكوينية حول الذكاء الاصطناعي في السينما.</p>
+            <a href="javascript:void(0)" class="read-more" id="btnOpenArticle">Lire l'article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <!-- ═══ CARD 2 — Partenariat Jeunesse ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="200" id="cardPartenariat">
+          <div class="news-img-wrapper">
+            <img src="./images/partenariat/photo1.png" alt="مراسيم توقيع اتفاقيات الشراكة">
+            <span class="category-badge">Partenariat</span>
+          </div>
+          <div class="news-content">
+            <span class="news-date">22 Novembre 2024</span>
+            <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right;">توقيع اتفاقيات شراكة لتنشيط مؤسسات الشباب بإقليم إفران</h3>
+            <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right;">مراسيم توقيع اتفاقيات الشراكة بين المديرية الإقليمية لقطاع الشباب والجمعيات لتنشيط مؤسسات الشباب.</p>
+            <a href="javascript:void(0)" class="read-more" id="btnOpenArticlePartenariat">Lire l'article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ═══ CARD 3 — Festival du Cinéma ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="300" id="cardFestivalCinema">
+          <div class="news-img-wrapper">
+            <img src="./images/festival/photo1.png" alt="مهرجان الأرز العالمي للفيلم القصير">
+            <span class="category-badge">Festival</span>
+          </div>
+          <div class="news-content">
+            <span class="news-date">10 Novembre 2024</span>
+            <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right;">مشاركة أطر الجمعية في تنظيم مهرجان الأرز العالمي للفيلم القصير</h3>
+            <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right;">مشاركة أطر جمعية شعلة المستقبل للثقافة والتنمية المكتب المركزي في تنظيم الدورة 25 لمهرجان الأرز العالمي للفيلم القصير.</p>
+            <a href="javascript:void(0)" class="read-more" id="btnOpenArticleFestival">Lire l'article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=2070&auto=format&fit=crop');"></div>
+          <div class="news-content">
+            <span class="news-date">15 Mai 2026</span>
+            <h3>Festival du Théâtre de Jeunesse</h3>
+            <p>La 5ème édition de notre festival annuel a réuni plus de 15 troupes locales dans une ambiance festive et créative.</p>
+            <a href="#" class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1548786811-dd6e453ccca7?q=80&w=2070&auto=format&fit=crop');"></div>
+          <div class="news-content">
+            <span class="news-date">10 Mars 2026</span>
+            <h3>Atelier : Écriture Créative</h3>
+            <p>Une journée dédiée à l'expression écrite pour les collégiens, encadrée par des auteurs locaux et professeurs.</p>
+            <a href="#" class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ════════════════════════════════
+           ARTICLE DETAIL MODAL
+           ════════════════════════════════ -->
+      <div class="article-modal-overlay" id="articleModal">
+        <div class="article-modal">
+          <button class="modal-close-btn" id="modalCloseBtn" aria-label="Fermer">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+
+          <!-- Hero image -->
+          <div class="modal-hero">
+            <img src="./images/formation/photo1.jpg" alt="Formation IA Cinéma">
+            <div class="modal-hero-gradient"></div>
+            <span class="modal-hero-badge">Formation</span>
+            <h2 class="modal-hero-title">دورة تكوينية — "إدماج الذكاء الاصطناعي في مهن السينما"</h2>
+          </div>
+
+          <div class="modal-body">
+            <!-- Date -->
+            <div class="modal-date-line">
+              <div class="modal-date-icon">
+                <i class="fa-regular fa-calendar"></i>
+              </div>
+              <span class="modal-date-text">19 Mai 2026</span>
+            </div>
+
+            <!-- Photo grid (2×2) -->
+            <div class="modal-photo-grid">
+              <div class="modal-photo-item">
+                <img src="./images/formation/photo1.jpg" alt="Formation IA Photo 1">
+                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              </div>
+              <div class="modal-photo-item">
+                <img src="./images/formation/photo2.jpg" alt="Formation IA Photo 2">
+                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              </div>
+              <div class="modal-photo-item">
+                <img src="./images/formation/photo3.jpg" alt="Formation IA Photo 3">
+                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              </div>
+              <div class="modal-photo-item">
+                <img src="./images/formation/photo4.jpg" alt="Formation IA Photo 4">
+                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              </div>
+            </div>
+
+            <!-- Full article text (Arabic RTL) -->
+            <div class="modal-article-text">
+              شارك منخرطو وأطر جمعية شعلة المستقبل للثقافة والتنمية في الدورة التكوينية المنظمة تحت عنوان "إدماج الذكاء الاصطناعي في مهن السينما"، والتي نظمتها جمعية نادي الشاشة للطفولة والشباب بفندق أسد الأطلس. شكّلت فرصة لاكتساب معارف حول توظيف الذكاء الاصطناعي من كتابة السيناريو إلى المونتاج والمؤثرات البصرية.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════
+           ARTICLE DETAIL MODAL 2 — Festival
+           ════════════════════════════════ -->
+      <div class="article-modal-overlay" id="articleModalFestival">
+        <div class="article-modal">
+          <button class="modal-close-btn" id="modalCloseBtnFestival" aria-label="Fermer">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+
+          <!-- Hero image -->
+          <div class="modal-hero">
+            <img src="./images/festival/photo1.png" alt="Festival du Cinéma">
+            <div class="modal-hero-gradient"></div>
+            <span class="modal-hero-badge">Festival</span>
+            <h2 class="modal-hero-title">مشاركة أطر الجمعية في تنظيم الدورة 25 لمهرجان الأرز العالمي للفيلم القصير</h2>
+          </div>
+
+          <div class="modal-body">
+            <!-- Date -->
+            <div class="modal-date-line">
+              <div class="modal-date-icon">
+                <i class="fa-regular fa-calendar"></i>
+              </div>
+              <span class="modal-date-text">10 Novembre 2024</span>
+            </div>
+
+            <!-- Photo grid (1 large + 2 small) -->
+            <div class="modal-photo-grid">
+              <div class="modal-photo-item" style="grid-column: span 2; aspect-ratio: 16 / 9;">
+                <img src="./images/festival/photo1.png" alt="Festival Photo 1">
+                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              </div>
+              <div class="modal-photo-item" style="aspect-ratio: 16 / 10;">
+                <img src="./images/festival/photo2.png" alt="Festival Photo 2">
+                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              </div>
+              <div class="modal-photo-item" style="aspect-ratio: 16 / 10;">
+                <img src="./images/festival/photo3.png" alt="Festival Photo 3">
+                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              </div>
+            </div>
+
+            <!-- Full article text (Arabic RTL) -->
+            <div class="modal-article-text">
+              مشاركة أطر جمعية شعلة المستقبل للثقافة والتنمية المكتب المركزي في تنظيم الدورة 25 لمهرجان الأرز العالمي للفيلم القصير، المنظم من طرف جمعية نادي الشاشة للطفولة والشباب. 
+              <br><br>
+              حيث عرفت هذه الدورة تكريم عدة وجوه سينمائية مغربية والاحتفاء بالأخوين محمد وأحمد ملص من دولة سورية الشقيقة، وذلك من 7 إلى غاية 10 نونبر 2024.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════════════════════════════
+           ARTICLE DETAIL MODAL 3 — Partenariat
+           ════════════════════════════════ -->
+      <div class="article-modal-overlay" id="articleModalPartenariat">
+        <div class="article-modal">
+          <button class="modal-close-btn" id="modalCloseBtnPartenariat" aria-label="Fermer">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+
+          <!-- Hero image -->
+          <div class="modal-hero">
+            <img src="./images/partenariat/photo1.png" alt="Signature de conventions de partenariat">
+            <div class="modal-hero-gradient"></div>
+            <span class="modal-hero-badge">Partenariat</span>
+            <h2 class="modal-hero-title">مراسيم توقيع اتفاقيات الشراكة لتنشيط مؤسسات الشباب بإقليم إفران</h2>
+          </div>
+
+          <div class="modal-body">
+            <!-- Date -->
+            <div class="modal-date-line">
+              <div class="modal-date-icon">
+                <i class="fa-regular fa-calendar"></i>
+              </div>
+              <span class="modal-date-text">22 Novembre 2024</span>
+            </div>
+
+            <!-- Photo grid (2 columns) -->
+            <div class="modal-photo-grid" style="grid-template-columns: repeat(2, 1fr);">
+              <div class="modal-photo-item" style="aspect-ratio: 16 / 10;">
+                <img src="./images/partenariat/photo1.png" alt="Signature Photo 1">
+                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              </div>
+              <div class="modal-photo-item" style="aspect-ratio: 16 / 10;">
+                <img src="./images/partenariat/photo2.png" alt="Signature Photo 2">
+                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+              </div>
+            </div>
+
+            <!-- Full article text (Arabic RTL) -->
+            <div class="modal-article-text">
+              مراسيم توقيع اتفاقيات الشراكة بين المديرية الإقليمية لقطاع الشباب بإفران والجمعيات المقبولة في العرض الوطني لتنشيط مؤسسات الشباب التي تشتغل في مجال الطفولة والشباب، والتي ترغب في مزاولة أنشطتها بمؤسسات الشباب (الدفعة الثانية).
+              <br><br>
+              يأتي هذا لتفعيل دور الشباب والمراكز السوسيو-رياضية في إطار العرض الوطني لتنشيط مؤسسات الشباب برسم موسم 2024 - 2025.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agenda -->
+      <h2 class="section-title" data-aos="fade-up" style="margin-top: 80px;">Événements à venir</h2>
+      <div class="agenda-list">
+        <div class="agenda-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="agenda-date-box">
+            <span class="day">25</span>
+            <span class="month">Juin</span>
+          </div>
+          <div class="agenda-details">
+            <h3>Spectacle : "L'Ombre du Cèdre"</h3>
+            <div class="agenda-meta">
+              <span><i class="fa-solid fa-clock"></i> 18:30</span>
+              <span><i class="fa-solid fa-location-dot"></i> Complexe Culturel Azrou</span>
+            </div>
+            <p>Présentation de la nouvelle pièce de théâtre écrite et jouée par la troupe des jeunes de l'association.</p>
+          </div>
+          <div style="display: flex; align-items: center; padding: 20px;">
+            <a href="#" class="btn btn-primary">S'inscrire</a>
+          </div>
+        </div>
+
+        <div class="agenda-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="agenda-date-box" style="background: var(--color-accent);">
+            <span class="day">12</span>
+            <span class="month">Juil</span>
+          </div>
+          <div class="agenda-details">
+            <h3>Journée Portes Ouvertes</h3>
+            <div class="agenda-meta">
+              <span><i class="fa-solid fa-clock"></i> 10:00 - 17:00</span>
+              <span><i class="fa-solid fa-location-dot"></i> Siège de l'Association</span>
+            </div>
+            <p>Découvrez nos locaux, rencontrez l'équipe et inscrivez-vous à nos futurs ateliers pour la rentrée.</p>
+          </div>
+          <div style="display: flex; align-items: center; padding: 20px;">
+            <a href="#" class="btn btn-outline" style="color: var(--color-primary); border-color: var(--color-primary);">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none;">
+        <p>&copy; 2026 Association Chaâla pour la Culture et le Développement. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="./js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // ── Modal logic 1 ──
+      const overlay   = document.getElementById('articleModal');
+      const btnOpen   = document.getElementById('btnOpenArticle');
+      const btnClose  = document.getElementById('modalCloseBtn');
+
+      function openModal() {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      btnOpen.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      });
+
+      btnClose.addEventListener('click', closeModal);
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) closeModal();
+      });
+
+      // ── Modal logic 2 (Festival) ──
+      const overlayFestival   = document.getElementById('articleModalFestival');
+      const btnOpenFestival   = document.getElementById('btnOpenArticleFestival');
+      const btnCloseFestival  = document.getElementById('modalCloseBtnFestival');
+
+      function openModalFestival() {
+        overlayFestival.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModalFestival() {
+        overlayFestival.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      btnOpenFestival.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModalFestival();
+      });
+
+      btnCloseFestival.addEventListener('click', closeModalFestival);
+
+      overlayFestival.addEventListener('click', (e) => {
+        if (e.target === overlayFestival) closeModalFestival();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlayFestival.classList.contains('active')) closeModalFestival();
+      });
+
+      // ── Modal logic 3 (Partenariat) ──
+      const overlayPartenariat   = document.getElementById('articleModalPartenariat');
+      const btnOpenPartenariat   = document.getElementById('btnOpenArticlePartenariat');
+      const btnClosePartenariat  = document.getElementById('modalCloseBtnPartenariat');
+
+      function openModalPartenariat() {
+        overlayPartenariat.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModalPartenariat() {
+        overlayPartenariat.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      btnOpenPartenariat.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModalPartenariat();
+      });
+
+      btnClosePartenariat.addEventListener('click', closeModalPartenariat);
+
+      overlayPartenariat.addEventListener('click', (e) => {
+        if (e.target === overlayPartenariat) closeModalPartenariat();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlayPartenariat.classList.contains('active')) closeModalPartenariat();
+      });
+    });
+  </script>
+</body>
+</html>

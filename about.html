@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos - Association Chaâla</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="./css/style.css">
+  
+  <style>
+    .page-header {
+      height: 40vh;
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1528605105345-5344ea20e269?q=80&w=2070&auto=format&fit=crop') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding-top: 60px;
+    }
+    
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background-color: var(--color-primary-light);
+      top: 0; bottom: 0; left: 50%;
+      margin-left: -2px;
+    }
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      right: -10px; top: 15px;
+      background-color: var(--color-accent);
+      border: 4px solid white;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    .timeline-item.left { left: 0; }
+    .timeline-item.right { left: 50%; }
+    .timeline-item.right::after { left: -10px; }
+    .timeline-content {
+      padding: 20px;
+      background-color: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    .timeline-date {
+      color: var(--color-accent);
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .value-card {
+      background: var(--color-primary);
+      color: white;
+      padding: 30px;
+      text-align: center;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+    .value-card:hover {
+      background: var(--color-accent);
+      transform: translateY(-5px);
+    }
+    .value-card i {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    /* Team Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .team-member {
+      background: white;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--box-shadow);
+      text-align: center;
+    }
+    .team-photo {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    .team-info {
+      padding: 20px;
+    }
+    .team-role {
+      color: var(--color-accent);
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    
+    /* Responsive Timeline */
+    @media (max-width: 768px) {
+      .timeline::after { left: 31px; }
+      .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+      .timeline-item.left::after, .timeline-item.right::after { left: 21px; }
+      .timeline-item.right { left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <div class="logo-container">
+        <i class="fa-solid fa-fire-flame-curved logo-icon"></i>
+        <div class="logo-text">Association<br>Chaâla</div>
+      </div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="about.html" class="nav-link active">À propos</a>
+        <a href="activities.html" class="nav-link">Activités</a>
+        <a href="gallery.html" class="nav-link">Galerie</a>
+        <a href="news.html" class="nav-link">Actualités</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <button class="lang-switch">العربية</button>
+        <a href="join.html" class="btn btn-primary" style="margin-left: 15px;">Nous rejoindre</a>
+      </nav>
+      <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container" data-aos="fade-up">
+      <h1>Qui sommes-nous ?</h1>
+      <p style="font-family: var(--font-heading-ar); color: var(--color-accent); font-size: 1.5rem;">من نحن</p>
+    </div>
+  </div>
+
+  <!-- History Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Notre Histoire</h2>
+      <div class="timeline">
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-content">
+            <div class="timeline-date">2014</div>
+            <h3>Fondation</h3>
+            <p>Création de l'association par un groupe de jeunes passionnés de théâtre à Azrou.</p>
+          </div>
+        </div>
+        <div class="timeline-item right" data-aos="fade-left">
+          <div class="timeline-content">
+            <div class="timeline-date">2016</div>
+            <h3>Premier Festival</h3>
+            <p>Organisation de la première édition du Festival Théâtral de Jeunesse.</p>
+          </div>
+        </div>
+        <div class="timeline-item left" data-aos="fade-right">
+          <div class="timeline-content">
+            <div class="timeline-date">2019</div>
+            <h3>Élargissement des statuts</h3>
+            <p>Intégration du développement communautaire comme pilier majeur de nos actions.</p>
+          </div>
+        </div>
+        <div class="timeline-item right" data-aos="fade-left">
+          <div class="timeline-content">
+            <div class="timeline-date">Aujourd'hui</div>
+            <h3>Maturité et Rayonnement</h3>
+            <p>Plus de 250 membres actifs et des partenariats solides au niveau de la province d'Ifrane.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="section" style="background-color: white;">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Nos Valeurs</h2>
+      <div class="values-grid">
+        <div class="value-card" data-aos="zoom-in" data-aos-delay="100">
+          <i class="fa-solid fa-palette"></i>
+          <h3>Créativité</h3>
+        </div>
+        <div class="value-card" data-aos="zoom-in" data-aos-delay="200">
+          <i class="fa-solid fa-handshake-angle"></i>
+          <h3>Solidarité</h3>
+        </div>
+        <div class="value-card" data-aos="zoom-in" data-aos-delay="300">
+          <i class="fa-solid fa-heart"></i>
+          <h3>Engagement</h3>
+        </div>
+        <div class="value-card" data-aos="zoom-in" data-aos-delay="400">
+          <i class="fa-solid fa-star"></i>
+          <h3>Excellence</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Le Bureau de Direction</h2>
+      <div class="team-grid">
+        <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Président" class="team-photo">
+          <div class="team-info">
+            <div class="team-role">Président</div>
+            <h3>Youssef Alaoui</h3>
+          </div>
+        </div>
+        <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80" alt="Secrétaire Générale" class="team-photo">
+          <div class="team-info">
+            <div class="team-role">Secrétaire Générale</div>
+            <h3>Fatima Zahra Bennani</h3>
+          </div>
+        </div>
+        <div class="team-member" data-aos="fade-up" data-aos-delay="300">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" alt="Trésorier" class="team-photo">
+          <div class="team-info">
+            <div class="team-role">Trésorier</div>
+            <h3>Karim Idrissi</h3>
+          </div>
+        </div>
+        <div class="team-member" data-aos="fade-up" data-aos-delay="400">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt="Resp. Culture" class="team-photo">
+          <div class="team-info">
+            <div class="team-role">Responsable Culturel</div>
+            <h3>Amina Tazi</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documents Section -->
+  <section class="section" style="background-color: white;">
+    <div class="container" style="text-align: center;">
+      <h2 class="section-title" data-aos="fade-up">Documents Officiels</h2>
+      <p style="margin-bottom: 30px; font-size: 1.1rem;">L'association est agréée par les autorités locales de la Province d'Ifrane (Agrément n° 14/2014).</p>
+      <a href="#" class="btn btn-primary"><i class="fa-solid fa-file-pdf"></i> Télécharger nos statuts (PDF)</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none;">
+        <p>&copy; 2026 Association Chaâla pour la Culture et le Développement. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>

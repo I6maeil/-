@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galerie - Association Chaâla</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- GLightbox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .page-header {
+      height: 40vh;
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1460565860710-1845184b2568?q=80&w=2070&auto=format&fit=crop') center/cover;
+      display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding-top: 60px;
+    }
+    
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border: 1px solid var(--color-primary);
+      background: transparent;
+      color: var(--color-primary);
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--color-accent);
+      color: white;
+      border-color: var(--color-accent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .gallery-item {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      aspect-ratio: 1;
+      display: block;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    .gallery-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    .gallery-overlay i {
+      font-size: 2rem;
+      color: var(--color-accent);
+      margin-bottom: 10px;
+    }
+    .gallery-overlay h3 { color: white; font-size: 1.2rem; margin:0; }
+    .gallery-overlay p { font-size: 0.9rem; margin:0; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <div class="logo-container">
+        <i class="fa-solid fa-fire-flame-curved logo-icon"></i>
+        <div class="logo-text">Association<br>Chaâla</div>
+      </div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="about.html" class="nav-link">À propos</a>
+        <a href="activities.html" class="nav-link">Activités</a>
+        <a href="gallery.html" class="nav-link active">Galerie</a>
+        <a href="news.html" class="nav-link">Actualités</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <button class="lang-switch">العربية</button>
+        <a href="join.html" class="btn btn-primary" style="margin-left: 15px;">Nous rejoindre</a>
+      </nav>
+      <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container" data-aos="fade-up">
+      <h1>Notre Galerie</h1>
+      <p style="font-family: var(--font-heading-ar); color: var(--color-accent); font-size: 1.5rem;">معرض الصور</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <!-- Filters -->
+      <div class="filters" data-aos="fade-up">
+        <button class="filter-btn active" data-filter="all">Tout voir</button>
+        <button class="filter-btn" data-filter="theatre">Théâtre</button>
+        <button class="filter-btn" data-filter="culture">Culture & Formations</button>
+        <button class="filter-btn" data-filter="dev">Développement</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid" data-aos="fade-up" data-aos-delay="100">
+        <a href="https://images.unsplash.com/photo-1507676184212-d0330a151f93?q=80&w=2000&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="theatre">
+          <img src="https://images.unsplash.com/photo-1507676184212-d0330a151f93?q=80&w=800&auto=format&fit=crop" alt="Spectacle">
+          <div class="gallery-overlay">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <h3>Spectacle "La Voix"</h3>
+            <p>Juin 2025</p>
+          </div>
+        </a>
+        
+        <a href="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?q=80&w=2070&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="culture">
+          <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?q=80&w=800&auto=format&fit=crop" alt="Culture">
+          <div class="gallery-overlay">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <h3>Atelier Lecture</h3>
+            <p>Mars 2026</p>
+          </div>
+        </a>
+
+        <a href="https://images.unsplash.com/photo-1593113589914-075568e09151?q=80&w=2071&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="dev">
+          <img src="https://images.unsplash.com/photo-1593113589914-075568e09151?q=80&w=800&auto=format&fit=crop" alt="Développement">
+          <div class="gallery-overlay">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <h3>Reboisement Azrou</h3>
+            <p>Février 2026</p>
+          </div>
+        </a>
+
+        <a href="https://images.unsplash.com/photo-1460881680858-30d872d5b530?q=80&w=2071&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="dev">
+          <img src="https://images.unsplash.com/photo-1460881680858-30d872d5b530?q=80&w=800&auto=format&fit=crop" alt="Action Solidarité">
+          <div class="gallery-overlay">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <h3>Distribution Hiver</h3>
+            <p>Décembre 2025</p>
+          </div>
+        </a>
+
+        <a href="https://images.unsplash.com/photo-1582055611189-cdb3c06637ba?q=80&w=1964&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="theatre">
+          <img src="https://images.unsplash.com/photo-1582055611189-cdb3c06637ba?q=80&w=800&auto=format&fit=crop" alt="Répétitions">
+          <div class="gallery-overlay">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <h3>Répétitions Troupe</h3>
+            <p>Mai 2025</p>
+          </div>
+        </a>
+
+        <a href="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=1974&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="culture">
+          <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=800&auto=format&fit=crop" alt="Conférence">
+          <div class="gallery-overlay">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+            <h3>Conférence Jeunesse</h3>
+            <p>Janvier 2026</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none;">
+        <p>&copy; 2026 Association Chaâla pour la Culture et le Développement. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <!-- GLightbox JS -->
+  <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+  <script src="./js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize GLightbox
+      const lightbox = GLightbox({
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: true
+      });
+
+      // Filter Logic
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active class
+          filterBtns.forEach(b => b.classList.remove('active'));
+          // Add to current
+          btn.classList.add('active');
+
+          const filterValue = btn.getAttribute('data-filter');
+
+          galleryItems.forEach(item => {
+            if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

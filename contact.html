@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Association Chaâla</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .page-header {
+      height: 40vh;
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop') center/cover;
+      display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding-top: 60px;
+    }
+    
+    .contact-container {
+      display: flex;
+      gap: 50px;
+      margin-top: -60px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .contact-info-card {
+      background: var(--color-primary);
+      color: white;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      flex: 1;
+      box-shadow: var(--box-shadow);
+    }
+    .contact-info-card h3 { color: white; margin-bottom: 20px; }
+    .contact-item {
+      display: flex; gap: 15px; margin-bottom: 25px; align-items: flex-start;
+    }
+    .contact-item i { color: var(--color-accent); font-size: 1.5rem; }
+    
+    .contact-form-card {
+      background: white;
+      padding: 40px;
+      border-radius: var(--border-radius);
+      flex: 2;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--color-primary); }
+    .form-control {
+      width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; font-size: 1rem;
+      transition: var(--transition);
+    }
+    .form-control:focus { border-color: var(--color-accent); outline: none; box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1); }
+    
+    .dynamic-fields { display: none; margin-top: 20px; padding: 20px; background: var(--color-bg); border-radius: 6px; }
+    .dynamic-fields.active { display: block; animation: fadeIn 0.5s; }
+    
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .map-container { margin-top: 60px; border-radius: var(--border-radius); overflow: hidden; height: 400px; box-shadow: var(--box-shadow); }
+    .map-container iframe { width: 100%; height: 100%; border: 0; }
+
+    @media (max-width: 768px) {
+      .contact-container { flex-direction: column; margin-top: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav-container">
+      <div class="logo-container">
+        <i class="fa-solid fa-fire-flame-curved logo-icon"></i>
+        <div class="logo-text">Association<br>Chaâla</div>
+      </div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="about.html" class="nav-link">À propos</a>
+        <a href="activities.html" class="nav-link">Activités</a>
+        <a href="gallery.html" class="nav-link">Galerie</a>
+        <a href="news.html" class="nav-link">Actualités</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+        <button class="lang-switch">العربية</button>
+        <a href="join.html" class="btn btn-primary" style="margin-left: 15px;">Nous rejoindre</a>
+      </nav>
+      <button class="hamburger"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container" data-aos="fade-up">
+      <h1>Contactez-nous</h1>
+      <p style="font-family: var(--font-heading-ar); color: var(--color-accent); font-size: 1.5rem;">اتصل بنا</p>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="contact-container">
+        <!-- Info -->
+        <div class="contact-info-card" data-aos="fade-right">
+          <h3>Nos Coordonnées</h3>
+          <p style="color: #cbd5e1; margin-bottom: 30px;">N'hésitez pas à nous contacter pour toute question, proposition de partenariat ou pour rejoindre nos équipes.</p>
+          
+          <div class="contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Adresse</strong>
+              <p style="color: #cbd5e1;">Quartier Tit Mellil, Rue 12<br>Azrou 53100, Maroc</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <strong>Téléphone</strong>
+              <p style="color: #cbd5e1;">+212 6 61 23 45 67<br>+212 5 35 56 78 90</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <strong>Email</strong>
+              <p style="color: #cbd5e1;">contact@chaala-azrou.org<br>presse@chaala-azrou.org</p>
+            </div>
+          </div>
+          
+          <div style="margin-top: 40px;">
+            <strong>Suivez-nous :</strong>
+            <div class="social-icons" style="margin-top: 10px;">
+              <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form-card" data-aos="fade-left">
+          <h3 style="color: var(--color-primary); margin-bottom: 25px; font-size: 1.8rem;">Envoyez-nous un message</h3>
+          
+          <!-- Mock Formspree endpoint -->
+          <form id="contactForm" action="https://formspree.io/f/placeholder" method="POST">
+            <div class="form-group">
+              <label for="profile">Je suis...</label>
+              <select id="profile" name="profile" class="form-control" required>
+                <option value="" disabled selected>Choisissez un profil</option>
+                <option value="particulier">Un particulier / futur membre</option>
+                <option value="sponsor">Un sponsor / partenaire privé</option>
+                <option value="institution">Une institution publique</option>
+                <option value="presse">Un journaliste / média</option>
+              </select>
+            </div>
+
+            <!-- Dynamic fields -->
+            <div id="dynamic-sponsor" class="dynamic-fields">
+              <div class="form-group">
+                <label for="company">Nom de l'entreprise</label>
+                <input type="text" id="company" name="company" class="form-control">
+              </div>
+            </div>
+
+            <div id="dynamic-presse" class="dynamic-fields">
+              <div class="form-group">
+                <label for="media">Nom du Média / Support</label>
+                <input type="text" id="media" name="media" class="form-control">
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 20px;">
+              <div class="form-group" style="flex: 1;">
+                <label for="name">Nom complet</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+              </div>
+              <div class="form-group" style="flex: 1;">
+                <label for="email">Adresse email</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Sujet</label>
+              <input type="text" id="subject" name="subject" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Votre message</label>
+              <textarea id="message" name="message" rows="5" class="form-control" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer le message <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i></button>
+            <p id="formStatus" style="display: none; margin-top: 15px; text-align: center; font-weight: bold; color: green;">Message envoyé avec succès !</p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="map-container" data-aos="fade-up">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53303.4727192661!2d-5.263845016578051!3d33.43571168936669!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda1c2b5fc2c710d%3A0xc6c7d3d2bfd4f6c4!2sAzrou!5e0!3m2!1sfr!2sma!4v1715783300000!5m2!1sfr!2sma" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: none;">
+        <p>&copy; 2026 Association Chaâla pour la Culture et le Développement. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="./js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const profileSelect = document.getElementById('profile');
+      const dynamicFields = document.querySelectorAll('.dynamic-fields');
+
+      profileSelect.addEventListener('change', (e) => {
+        // Hide all
+        dynamicFields.forEach(el => el.classList.remove('active'));
+        
+        // Show specific
+        const val = e.target.value;
+        if (val === 'sponsor') {
+          document.getElementById('dynamic-sponsor').classList.add('active');
+        } else if (val === 'presse') {
+          document.getElementById('dynamic-presse').classList.add('active');
+        }
+      });
+
+      // Simple form submission mock
+      const form = document.getElementById('contactForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button');
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Envoi en cours...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+          btn.innerHTML = 'Envoyer le message <i class="fa-solid fa-paper-plane"></i>';
+          btn.disabled = false;
+          form.reset();
+          dynamicFields.forEach(el => el.classList.remove('active'));
+          document.getElementById('formStatus').style.display = 'block';
+          
+          setTimeout(() => {
+            document.getElementById('formStatus').style.display = 'none';
+          }, 4000);
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+</html>
