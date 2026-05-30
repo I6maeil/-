@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chaâla - الجمعية شعلة المستقبل للثقافة والتنمية</title>
+  <title>جمعية شعلة المستقبل للثقافة و التنمية المكتب المركزي ازرو افران</title>
   <meta name="description" content="Association culturelle et de développement basée à Azrou, Maroc. Théâtre, culture, et développement communautaire.">
   
   <!-- Fonts & Icons -->
@@ -183,7 +183,7 @@
     <div class="container nav-container">
       <div class="logo-container">
         <i class="fa-solid fa-fire-flame-curved logo-icon"></i>
-        <div class="logo-text">Association<br>Chaâla</div>
+        <div class="logo-text" dir="rtl" style="font-size:0.62rem;line-height:1.35;">جمعية شعلة المستقبل<br>للثقافة و التنمية<br>المكتب المركزي ازرو افران</div>
       </div>
       
       <nav class="nav-menu">
@@ -206,8 +206,8 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container hero-content" data-aos="fade-up">
-      <h1>جمعية شعلة المستقبل للثقافة والتنمية</h1>
-      <p>" Allumer les esprits, bâtir l'avenir | نُشعلُ العقول، نبني الغد "</p>
+      <h1 dir="rtl">جمعية شعلة المستقبل للثقافة و التنمية المكتب المركزي ازرو افران</h1>
+      <p dir="rtl">جمعية ثقافية فنية</p>
       <div class="hero-buttons">
         <a href="about.html" class="btn btn-primary">Découvrir l'association</a>
         <a href="join.html" class="btn btn-outline">Nous soutenir</a>
@@ -276,44 +276,230 @@
     </div>
   </section>
 
-  <!-- News Section -->
-  <section class="section" style="background-color: white;">
+  <!-- Activities Section — أنشطتنا -->
+  <style>
+    .activities-section-home { background-color: #f8fafc; }
+    .activities-grid-home {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 1024px) {
+      .activities-grid-home { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .activities-grid-home { grid-template-columns: 1fr; }
+    }
+    .act-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .act-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.14);
+    }
+    .act-card-img-wrap {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+    .act-card-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .act-card:hover .act-card-img-wrap img { transform: scale(1.05); }
+    .act-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: #8B0000;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-family: var(--font-heading-ar);
+      white-space: nowrap;
+      z-index: 2;
+    }
+    .act-card-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .act-card-title {
+      font-family: var(--font-heading-ar);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      line-height: 1.5;
+      text-align: right;
+      direction: rtl;
+      margin: 0;
+    }
+    .act-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 8px;
+    }
+    .act-btn {
+      background: #8B0000;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-family: var(--font-heading-ar);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease;
+      white-space: nowrap;
+      display: inline-block;
+    }
+    .act-btn:hover { background: #a00000; }
+    .act-date {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      font-family: var(--font-heading-ar);
+      direction: rtl;
+      text-align: right;
+    }
+  </style>
+
+  <section class="section activities-section-home">
     <div class="container">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
-        <h2 class="section-title" style="margin-bottom: 0;">Dernières Actualités</h2>
-        <a href="news.html" class="btn btn-outline" style="color: var(--color-primary); border-color: var(--color-primary);">Toutes les actualités</a>
-      </div>
-      
-      <div class="news-grid">
-        <div class="news-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=2070&auto=format&fit=crop');"></div>
-          <div class="news-content">
-            <span class="news-date">15 Mai 2026</span>
-            <h3>Festival du Théâtre de Jeunesse</h3>
-            <p>La 5ème édition de notre festival annuel a réuni plus de 15 troupes locales...</p>
-            <a href="news.html" style="color: var(--color-accent); font-weight: 600; margin-top: 10px; display: inline-block;">Lire la suite <i class="fa-solid fa-arrow-right"></i></a>
+      <h2 class="section-title" data-aos="fade-up" dir="rtl" style="text-align:right;">أنشطتنا</h2>
+      <div class="activities-grid-home">
+
+        <!-- Card 1 -->
+        <div class="act-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="act-card-img-wrap">
+            <img src="images/gallery/theatre1.jpg" alt="النادي المسرحي للجمعية">
+            <span class="act-badge">الأنشطة الثقافية</span>
+          </div>
+          <div class="act-card-body">
+            <h3 class="act-card-title" dir="rtl">النادي المسرحي للجمعية</h3>
+            <div class="act-card-footer">
+              <a href="activities.html" class="act-btn">احدث المقالات</a>
+              <span class="act-date" dir="rtl">أبريل 25, 2025</span>
+            </div>
           </div>
         </div>
-        
-        <div class="news-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070&auto=format&fit=crop');"></div>
-          <div class="news-content">
-            <span class="news-date">02 Avril 2026</span>
-            <h3>Campagne de reboisement "Azrou Vert"</h3>
-            <p>En partenariat avec la commune, nos bénévoles ont planté 500 arbres dans la forêt de cèdres...</p>
-            <a href="news.html" style="color: var(--color-accent); font-weight: 600; margin-top: 10px; display: inline-block;">Lire la suite <i class="fa-solid fa-arrow-right"></i></a>
+
+        <!-- Card 2 -->
+        <div class="act-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="act-card-img-wrap">
+            <img src="images/gallery/theatre2.jpg" alt="احتفالاً باليوم الوطني للمسرح">
+            <span class="act-badge">الأنشطة الثقافية</span>
+          </div>
+          <div class="act-card-body">
+            <h3 class="act-card-title" dir="rtl">احتفالاً باليوم الوطني للمسرح</h3>
+            <div class="act-card-footer">
+              <a href="activities.html" class="act-btn">احدث المقالات</a>
+              <span class="act-date" dir="rtl">أبريل 25, 2025</span>
+            </div>
           </div>
         </div>
-        
-        <div class="news-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2070&auto=format&fit=crop');"></div>
-          <div class="news-content">
-            <span class="news-date">10 Mars 2026</span>
-            <h3>Atelier : Écriture Créative</h3>
-            <p>Une journée dédiée à l'expression écrite pour les collégiens, encadrée par des auteurs locaux...</p>
-            <a href="news.html" style="color: var(--color-accent); font-weight: 600; margin-top: 10px; display: inline-block;">Lire la suite <i class="fa-solid fa-arrow-right"></i></a>
+
+        <!-- Card 3 -->
+        <div class="act-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="act-card-img-wrap">
+            <img src="images/festival/photo1.png" alt="لاقصائيات الإقليمية للمهرجان الوطني">
+            <span class="act-badge">الأنشطة الثقافية</span>
+          </div>
+          <div class="act-card-body">
+            <h3 class="act-card-title" dir="rtl">لاقصائيات الإقليمية للمهرجان الوطني</h3>
+            <div class="act-card-footer">
+              <a href="activities.html" class="act-btn">احدث المقالات</a>
+              <span class="act-date" dir="rtl">أبريل 25, 2025</span>
+            </div>
           </div>
         </div>
+
+        <!-- Card 4 -->
+        <div class="act-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="act-card-img-wrap">
+            <img src="images/festival/photo2.png" alt="الندوة الصحفية الخاصة بدوري الشعلة">
+            <span class="act-badge">الأنشطة الثقافية</span>
+          </div>
+          <div class="act-card-body">
+            <h3 class="act-card-title" dir="rtl">الندوة الصحفية الخاصة بدوري الشعلة</h3>
+            <div class="act-card-footer">
+              <a href="activities.html" class="act-btn">احدث المقالات</a>
+              <span class="act-date" dir="rtl">يونيو 2, 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="act-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="act-card-img-wrap">
+            <img src="images/gallery/theatre3.jpg" alt="نادي المسرحي التابع للجمعية">
+            <span class="act-badge">الأنشطة الثقافية</span>
+          </div>
+          <div class="act-card-body">
+            <h3 class="act-card-title" dir="rtl">نادي المسرحي التابع للجمعية</h3>
+            <div class="act-card-footer">
+              <a href="activities.html" class="act-btn">احدث المقالات</a>
+              <span class="act-date" dir="rtl">ديسمبر 10, 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="act-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="act-card-img-wrap">
+            <img src="images/gallery/theatre4.jpg" alt="نظمت جمعية شعلة المستقبل نشاطاً مسرحياً">
+            <span class="act-badge">الأنشطة الثقافية</span>
+          </div>
+          <div class="act-card-body">
+            <h3 class="act-card-title" dir="rtl">نظمت جمعية شعلة المستقبل نشاطاً مسرحياً</h3>
+            <div class="act-card-footer">
+              <a href="activities.html" class="act-btn">احدث المقالات</a>
+              <span class="act-date" dir="rtl">ديسمبر 10, 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="act-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="act-card-img-wrap">
+            <img src="images/gallery/theatre5.jpg" alt="ورشات بناء الشخصية المسرحية">
+            <span class="act-badge">الأنشطة الثقافية</span>
+          </div>
+          <div class="act-card-body">
+            <h3 class="act-card-title" dir="rtl">ورشات بناء الشخصية المسرحية</h3>
+            <div class="act-card-footer">
+              <a href="activities.html" class="act-btn">احدث المقالات</a>
+              <span class="act-date" dir="rtl">مارس 18, 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="act-card" data-aos="fade-up" data-aos-delay="250">
+          <div class="act-card-img-wrap">
+            <img src="images/gallery/theatre6.jpg" alt="حصة اليوم للنادي المسرحي">
+            <span class="act-badge">الأنشطة الثقافية</span>
+          </div>
+          <div class="act-card-body">
+            <h3 class="act-card-title" dir="rtl">حصة اليوم للنادي المسرحي</h3>
+            <div class="act-card-footer">
+              <a href="activities.html" class="act-btn">احدث المقالات</a>
+              <span class="act-date" dir="rtl">أبريل 25, 2025</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -325,19 +511,44 @@
       <div class="swiper partners-swiper" data-aos="fade-up" data-aos-delay="100">
         <div class="swiper-wrapper">
           <div class="swiper-slide partner-logo">
-            <img src="https://via.placeholder.com/200x80/f4f4f9/0f172a?text=Ministère+Culture" alt="Partenaire 1">
+            <div style="width:150px; height:80px; background:#f5f5f5; 
+                        border-radius:8px; display:flex; align-items:center;
+                        justify-content:center; border:1px solid #ddd;
+                        font-size:13px; color:#999; text-align:center; padding:8px;">
+              شريك 1
+            </div>
           </div>
           <div class="swiper-slide partner-logo">
-            <img src="https://via.placeholder.com/200x80/f4f4f9/0f172a?text=Province+Ifrane" alt="Partenaire 2">
+            <div style="width:150px; height:80px; background:#f5f5f5; 
+                        border-radius:8px; display:flex; align-items:center;
+                        justify-content:center; border:1px solid #ddd;
+                        font-size:13px; color:#999; text-align:center; padding:8px;">
+              شريك 2
+            </div>
           </div>
           <div class="swiper-slide partner-logo">
-            <img src="https://via.placeholder.com/200x80/f4f4f9/0f172a?text=Commune+Azrou" alt="Partenaire 3">
+            <div style="width:150px; height:80px; background:#f5f5f5; 
+                        border-radius:8px; display:flex; align-items:center;
+                        justify-content:center; border:1px solid #ddd;
+                        font-size:13px; color:#999; text-align:center; padding:8px;">
+              شريك 3
+            </div>
           </div>
           <div class="swiper-slide partner-logo">
-            <img src="https://via.placeholder.com/200x80/f4f4f9/0f172a?text=Fondation+Z" alt="Partenaire 4">
+            <div style="width:150px; height:80px; background:#f5f5f5; 
+                        border-radius:8px; display:flex; align-items:center;
+                        justify-content:center; border:1px solid #ddd;
+                        font-size:13px; color:#999; text-align:center; padding:8px;">
+              شريك 4
+            </div>
           </div>
           <div class="swiper-slide partner-logo">
-            <img src="https://via.placeholder.com/200x80/f4f4f9/0f172a?text=Sponsor+Privé" alt="Partenaire 5">
+            <div style="width:150px; height:80px; background:#f5f5f5; 
+                        border-radius:8px; display:flex; align-items:center;
+                        justify-content:center; border:1px solid #ddd;
+                        font-size:13px; color:#999; text-align:center; padding:8px;">
+              شريك 5
+            </div>
           </div>
         </div>
       </div>
@@ -351,11 +562,11 @@
         <div class="footer-col">
           <div class="logo-container" style="margin-bottom: 20px;">
             <i class="fa-solid fa-fire-flame-curved logo-icon"></i>
-            <div class="logo-text">Association<br>Chaâla</div>
+            <div class="logo-text" dir="rtl" style="font-size:0.62rem;line-height:1.35;">جمعية شعلة المستقبل<br>للثقافة و التنمية<br>المكتب المركزي ازرو افران</div>
           </div>
-          <p style="color: #cbd5e1; font-size: 0.95rem;">
-            جمعية شعلة المستقبل للثقافة والتنمية<br>
-            Allumer les esprits, bâtir l'avenir. Une association dédiée à l'art, la culture et l'engagement citoyen à Azrou.
+          <p style="color: #cbd5e1; font-size: 0.95rem;" dir="rtl">
+            جمعية شعلة المستقبل للثقافة و التنمية المكتب المركزي ازرو افران<br>
+            <span style="color: var(--color-accent);">جمعية ثقافية فنية</span>
           </p>
           <div class="social-icons">
             <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
@@ -405,7 +616,7 @@
       </div>
       
       <div class="footer-bottom">
-        <p>&copy; 2026 Association Chaâla pour la Culture et le Développement. Tous droits réservés.</p>
+        <p dir="rtl">&copy; 2026 جمعية شعلة المستقبل للثقافة و التنمية المكتب المركزي ازرو افران. جميع الحقوق محفوظة.</p>
       </div>
     </div>
   </footer>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Actualités & Agenda - Association Chaâla</title>
+  <title>الأخبار والفعاليات - جمعية شعلة المستقبل للثقافة و التنمية المكتب المركزي ازرو افران</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link rel="stylesheet" href="./css/style.css">
@@ -17,26 +17,31 @@
     /* ── News Grid ── */
     .news-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
       margin-bottom: 60px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 992px) {
+      .news-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
     .news-card {
       background: white;
-      border-radius: var(--border-radius);
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: var(--box-shadow);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
       display: flex; flex-direction: column;
       transition: var(--transition);
       cursor: default;
     }
     .news-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
     }
     .news-img-wrapper {
       position: relative;
-      height: 220px;
+      height: 200px;
       overflow: hidden;
     }
     .news-img-wrapper img {
@@ -352,6 +357,24 @@
       .modal-photo-grid { grid-template-columns: 1fr; }
       .modal-hero { height: 180px; }
     }
+
+    /* ── Theatre Grid ── */
+    .theatre-grid {
+      display: grid;
+      gap: 30px;
+      margin-bottom: 60px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) {
+      .theatre-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 992px) {
+      .theatre-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
@@ -360,7 +383,7 @@
     <div class="container nav-container">
       <div class="logo-container">
         <i class="fa-solid fa-fire-flame-curved logo-icon"></i>
-        <div class="logo-text">Association<br>Chaâla</div>
+        <div class="logo-text" dir="rtl" style="font-size:0.62rem;line-height:1.35;">جمعية شعلة المستقبل<br>للثقافة و التنمية<br>المكتب المركزي ازرو افران</div>
       </div>
       <nav class="nav-menu">
         <a href="index.html" class="nav-link">Accueil</a>
@@ -389,223 +412,212 @@
 
       <div class="news-grid">
 
-        <!-- ═══ CARD 1 — Formation IA Cinéma ═══ -->
-        <div class="news-card" data-aos="fade-up" data-aos-delay="100" id="cardFormationIA">
+        <!-- ═══ CARD 1 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="100">
           <div class="news-img-wrapper">
-            <img src="./images/formation/photo1.jpg" alt="دورة تكوينية — إدماج الذكاء الاصطناعي في مهن السينما">
-            <span class="category-badge">Formation</span>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgNCXbE8YMg0yY8rL-nX7Red25yKzOzzRS-KVNgA7rU7sNekZPlpZ6idPXBGOXCwYNEsFzIy-3saIAfXIvealNK8F_jQX1gVb1ROtbl10xpM50Ftuyh2UH8jsJ0v9PciefdzoeSNygB8c_xMDQIBWip9hq9nlTXuXXsr8DLCaq_0Yo-6BlKMi7GJSwoPZc/s1600/1.jpg" alt="النادي المسرحي للجمعية">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , المسرح</span>
           </div>
-          <div class="news-content">
-            <span class="news-date">19 Mai 2026</span>
-            <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right;">دورة تكوينية — "إدماج الذكاء الاصطناعي في مهن السينما"</h3>
-            <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right;">شارك منخرطو الجمعية في دورة تكوينية حول الذكاء الاصطناعي في السينما.</p>
-            <a href="javascript:void(0)" class="read-more" id="btnOpenArticle">Lire l'article <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">النادي المسرحي للجمعية</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">كان يوم حافل بالانشطة حيث قام منخرطي النادي المسرحي بالجمعية في بحث عن المسرح...</p>
+            </div>
           </div>
-        </div>
-        <!-- ═══ CARD 2 — Partenariat Jeunesse ═══ -->
-        <div class="news-card" data-aos="fade-up" data-aos-delay="200" id="cardPartenariat">
-          <div class="news-img-wrapper">
-            <img src="./images/partenariat/photo1.png" alt="مراسيم توقيع اتفاقيات الشراكة">
-            <span class="category-badge">Partenariat</span>
-          </div>
-          <div class="news-content">
-            <span class="news-date">22 Novembre 2024</span>
-            <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right;">توقيع اتفاقيات شراكة لتنشيط مؤسسات الشباب بإقليم إفران</h3>
-            <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right;">مراسيم توقيع اتفاقيات الشراكة بين المديرية الإقليمية لقطاع الشباب والجمعيات لتنشيط مؤسسات الشباب.</p>
-            <a href="javascript:void(0)" class="read-more" id="btnOpenArticlePartenariat">Lire l'article <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">أبريل 25, 2025</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
           </div>
         </div>
 
-        <!-- ═══ CARD 3 — Festival du Cinéma ═══ -->
-        <div class="news-card" data-aos="fade-up" data-aos-delay="300" id="cardFestivalCinema">
+        <!-- ═══ CARD 2 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="200">
           <div class="news-img-wrapper">
-            <img src="./images/festival/photo1.png" alt="مهرجان الأرز العالمي للفيلم القصير">
-            <span class="category-badge">Festival</span>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFhngmdDnE6IfCpIM3QYd7TNCL1vTnAOmfONsTK5ILQtXUVy7Esl8VcrCB8m32_bqHi0iETiQv84h0DzpcCzlvHqyJLS9P5W8zI3kkGQr_-u7cGNx_7IcN2HF-MLTXaUjm1WjN4EZ6PnMrXCDfFsBpVYAt8LTtVexlUvzANFrgwy3j6pXyjx-M3u-8MXM/s1600/488561022_3332063763602941_320273132130980648_n.jpg" alt="احتفالاً باليوم الوطني للمسرح">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , احتفالات</span>
           </div>
-          <div class="news-content">
-            <span class="news-date">10 Novembre 2024</span>
-            <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right;">مشاركة أطر الجمعية في تنظيم مهرجان الأرز العالمي للفيلم القصير</h3>
-            <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right;">مشاركة أطر جمعية شعلة المستقبل للثقافة والتنمية المكتب المركزي في تنظيم الدورة 25 لمهرجان الأرز العالمي للفيلم القصير.</p>
-            <a href="javascript:void(0)" class="read-more" id="btnOpenArticleFestival">Lire l'article <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">احتفالاً باليوم الوطني للمسرح</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">احتفالاً باليوم الوطني للمسرح نظمت جمعية شعلة المستقبل للثقافة والتنمية نشاطاً ثقافي...</p>
+            </div>
           </div>
-        </div>
-        
-        <!-- Card 4 -->
-        <div class="news-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1539650116574-8efeb43e2750?q=80&w=2070&auto=format&fit=crop');"></div>
-          <div class="news-content">
-            <span class="news-date">15 Mai 2026</span>
-            <h3>Festival du Théâtre de Jeunesse</h3>
-            <p>La 5ème édition de notre festival annuel a réuni plus de 15 troupes locales dans une ambiance festive et créative.</p>
-            <a href="#" class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></a>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">أبريل 25, 2025</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
           </div>
         </div>
 
-        <!-- Card 5 -->
-        <div class="news-card" data-aos="fade-up" data-aos-delay="500">
-          <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1548786811-dd6e453ccca7?q=80&w=2070&auto=format&fit=crop');"></div>
-          <div class="news-content">
-            <span class="news-date">10 Mars 2026</span>
-            <h3>Atelier : Écriture Créative</h3>
-            <p>Une journée dédiée à l'expression écrite pour les collégiens, encadrée par des auteurs locaux et professeurs.</p>
-            <a href="#" class="read-more">Lire l'article <i class="fa-solid fa-arrow-right"></i></a>
+        <!-- ═══ CARD 3 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="news-img-wrapper">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiJX3udDH8Jl4fMHk854iZiR4cHDSN3FghCkUTZMwiKVmyU70MtTPfdppvfXvxbUp1MxEAofa9E1z3vr89CDIG2xkzcecyvn5sSz70rUsIc1x2DYrCbHnFhV1TdYpf4C5ogwl-RpclpVg2ffMj_MUWxG03Rzpi95v_NT1t_SAdTvxakaLzmRxakF8eH5BE/s1600/480982490_1225813932877186_5701235218330196959_n.jpg" alt="لاقصائيات الإقليمية للمهرجان الوطني لجائزة محمد الجم">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , احتفالات</span>
+          </div>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">لاقصائيات الإقليمية للمهرجان الوطني لجائزة محمد الجم</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">لاقصائيات الإقليمية المؤهلة للمهرجان الوطني لجائز محمد الجم لمسرح الشباب...</p>
+            </div>
+          </div>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">أبريل 25, 2025</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
+          </div>
+        </div>
+
+        <!-- ═══ CARD 4 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="news-img-wrapper">
+            <img src="https://img.youtube.com/vi/YRnLWg4b2iw/hqdefault.jpg" alt="الندوة الصحفية الخاصة بدوري الشعلة">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , احتفالات</span>
+          </div>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">الندوة الصحفية الخاصة بدوري الشعلة</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">الندوة الصحفية الخاصة بدوري الشعلة...</p>
+            </div>
+          </div>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">يونيو 2, 2025</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
+          </div>
+        </div>
+
+        <!-- ═══ CARD 5 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="news-img-wrapper">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyUo8WlaQi_8L2I9LYodTXIl6WvGo2fu_1MDpQMqAwmanLKT0C_MKe5KBJ-Bpx5VXsboft6ukMuYcGy5jB10Hj60IwOYzEGMG1uSmNCSY7CnrANv1tJYpGjO67zREVCem68PzyP83VwHKw4s8V4KI-9WQGqa0HPIPPLnAznJ_4ckIbykFdfxFgX6mXVK0/s1600/330126569_582091993853292_6327395153701109965_n.jpg" alt="نادي المسرحي التابع للجمعية">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , المسرح</span>
+          </div>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">نادي المسرحي التابع للجمعية</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">النادي المسرحي التابع للجمعية تمت القراءة الاطالية للعرض المسرحي المقبل...</p>
+            </div>
+          </div>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">ديسمبر 10, 2024</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
+          </div>
+        </div>
+
+        <!-- ═══ CARD 6 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="news-img-wrapper">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2EpPNdRp6MZld9y21fezODG0C9bla7yXi2CDbT67vv96KE6aW0yGmvSeDndV_vqjB1nFZDGzrNtF3O2svznDxZN_LBHiZvVB6xIkvaYXAraIDDsGvN9RELg4DHfie-GPHAzoy8_BC7SsXtj4MYwJ5ks2Xfkkh-HObNEZglx1MFMCutOS3ILBJ19rU6Rw/s1600/331876059_525198833106224_7254398824835666269_n.jpg" alt="نظمت جمعية شعلة المستقبل نشاطاً مسرحياً">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , احتفالات</span>
+          </div>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">نظمت جمعية شعلة المستقبل نشاطاً مسرحياً</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">نظمت جمعية شعلة المستقبل نشاطاً ثقافي احتفالي مسرحي وذلك بشراكة مع جمعية اصدقاء ازرو...</p>
+            </div>
+          </div>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">ديسمبر 10, 2024</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
+          </div>
+        </div>
+
+        <!-- ═══ CARD 7 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="news-img-wrapper">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVkCwFpnVcHqBhOKVrOwu3gcBj8Zzkg77g9YbVG1V1X119mX2ETA8y2KyVuX6d9p8QMqd6Adxeml9ZYojZX-nI8U2chvZJxCDaqcPDv145fpHSXyy__Fn0XJ-llN468HYyFj-3htUKymgVxBBFUG9GjoyBJEzK8HksXtMxzDgnPQNj4CDFVQxstc2XncY/s1600/336738891_724084039265225_6331481534177756278_n.jpg" alt="ورشات بناء الشخصية المسرحية">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , المسرح</span>
+          </div>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">ورشات بناء الشخصية المسرحية</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">ورشات بناء الشخصية المسرحية وذلك يوم السبت 18 مارس 2023 بالمركب السوسيو ثقافي...</p>
+            </div>
+          </div>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">مارس 18, 2023</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
+          </div>
+        </div>
+
+        <!-- ═══ CARD 8 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="news-img-wrapper">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEidRyfA3RSl78lk1Ac0FOsICA_6nOZzvDEYSk1sOrCW-X_ClR6GT8ixLlzqO-fEePuqxudSr77qRjxLjCtDjMVxn0fnjLCDI4uDV3rFhn9-429dlWT-dikeJAqlWOuyKy5uoX25mkV0m-G_TEcnmTeo8y3U9TCDLV4vhJp8GC48_TsYM2QIO9N1y2crppE/s1600/487470589_3326920204117297_5545911560509421861_n.jpg" alt="حصة اليوم للنادي المسرحي لتطوير مهارات الشخصية">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , المسرح</span>
+          </div>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">حصة اليوم للنادي المسرحي لتطوير مهارات الشخصية</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">حصة اليوم للنادي المسرحي تضمنت ورشة التركيز والانسجام وتطوير مهارات الشخصية...</p>
+            </div>
+          </div>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">أبريل 25, 2025</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
+          </div>
+        </div>
+
+        <!-- ═══ CARD 9 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="news-img-wrapper">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglZf5DDhKAY6e2GVgb7GK77v4Ce-rS3Y9WMo4KH7JxVW4Awr6lMY7Kjr2YRyg_rXOP6mSrOTjT0kj8fLSqa5RIh6W1ADI7Cglffd71KvBOqRgBPstF0B-ZEG8sJo5MnLWWH27rypip2Y8nAaowuYQU-kV4R_3YPujsx5g8CUwDYHbMJuAV3L9p5c1TMgo/s1600/329766770_891517092178118_1031749290329318551_n.jpg" alt="جمعية شعلة المستقبل للثقافة والتنمية ورشات في المسرح">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , المسرح</span>
+          </div>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">جمعية شعلة المستقبل للثقافة والتنمية ورشات في المسرح</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">جمعية شعلة المستقبل للثقافة والتنمية المكتب المركزي ورشات في المسرح بالمركز السوسيو...</p>
+            </div>
+          </div>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">ديسمبر 10, 2024</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
+          </div>
+        </div>
+
+        <!-- ═══ CARD 10 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="news-img-wrapper">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgCiKOWa8FR9EkXBWcMec0ni9raXTxSbMDV5r86aEAC5pRmYb3kwtAJgL4a0A2AqQCkLt1ydEcCtbN1lAY3plfnP0zrSWrI_0tTZVGKLejxzsSDvMxCBmWOELAcw46QT8JWJn51LkqYXIIAk772C_QsjURwiw85Jy7EJ0TJBJCuA_2AE3tMFhKa8ZuBaSk/s1600/333176831_1387646478676117_4016721789662835935_n.jpg" alt="حصة النادي المسرحي تضمنت تدريبات في التعبير الجسدي">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , المسرح</span>
+          </div>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">حصة النادي المسرحي تضمنت تدريبات في التعبير الجسدي</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">حصة النادي المسرحي التابع لجمعية شعلة للثقافة والتنمية تضمنت تدريبات في التعبير الجسدي...</p>
+            </div>
+          </div>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">ديسمبر 10, 2024</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
+          </div>
+        </div>
+
+        <!-- ═══ CARD 11 ═══ -->
+        <div class="news-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="news-img-wrapper">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEijSn3ZzLYWsczyFlK9Zdix1xlqwuY6wjws-MYAoMXa9g6405ecJp1cbD5NlP7fDSkOMxeh_T39JB2cgkBa8XFAJfFI_Jp84RLb3uY1bl0f2DlfNVavC9VhXUb9K-E0G2-_lGMKPqnuqVrb6LCbvmKWYZjdU13yLPzwOzlVA753lvtpYoBYUG32za-EsLU/s1600/331675906_582434990455267_3557978811581585603_n.jpg" alt="حصة اليوم تضمنت تدريبات مسرحية حول التركيز">
+            <span class="category-badge" style="direction: rtl;">الأنشطة الثقافية , احتفالات</span>
+          </div>
+          <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">حصة اليوم تضمنت تدريبات مسرحية حول التركيز</h3>
+              <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">حصة اليوم تضمنت تدريبات مسرحية حول التركيز وكيفية التحرك بالخشبة نقطة التركيز...</p>
+            </div>
+          </div>
+          <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+            <span class="news-date" style="font-size: 0.85rem; color: #64748b; font-weight: 500;">ديسمبر 10, 2024</span>
+            <a href="https://choalatlmost9bal.blogspot.com" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #FF6B00; color: white; border: none; font-weight: 600; text-decoration: none;">احدث المقالات</a>
           </div>
         </div>
 
       </div>
 
-      <!-- ════════════════════════════════
-           ARTICLE DETAIL MODAL
-           ════════════════════════════════ -->
-      <div class="article-modal-overlay" id="articleModal">
-        <div class="article-modal">
-          <button class="modal-close-btn" id="modalCloseBtn" aria-label="Fermer">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-
-          <!-- Hero image -->
-          <div class="modal-hero">
-            <img src="./images/formation/photo1.jpg" alt="Formation IA Cinéma">
-            <div class="modal-hero-gradient"></div>
-            <span class="modal-hero-badge">Formation</span>
-            <h2 class="modal-hero-title">دورة تكوينية — "إدماج الذكاء الاصطناعي في مهن السينما"</h2>
-          </div>
-
-          <div class="modal-body">
-            <!-- Date -->
-            <div class="modal-date-line">
-              <div class="modal-date-icon">
-                <i class="fa-regular fa-calendar"></i>
-              </div>
-              <span class="modal-date-text">19 Mai 2026</span>
-            </div>
-
-            <!-- Photo grid (2×2) -->
-            <div class="modal-photo-grid">
-              <div class="modal-photo-item">
-                <img src="./images/formation/photo1.jpg" alt="Formation IA Photo 1">
-                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-              <div class="modal-photo-item">
-                <img src="./images/formation/photo2.jpg" alt="Formation IA Photo 2">
-                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-              <div class="modal-photo-item">
-                <img src="./images/formation/photo3.jpg" alt="Formation IA Photo 3">
-                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-              <div class="modal-photo-item">
-                <img src="./images/formation/photo4.jpg" alt="Formation IA Photo 4">
-                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
-
-            <!-- Full article text (Arabic RTL) -->
-            <div class="modal-article-text">
-              شارك منخرطو وأطر جمعية شعلة المستقبل للثقافة والتنمية في الدورة التكوينية المنظمة تحت عنوان "إدماج الذكاء الاصطناعي في مهن السينما"، والتي نظمتها جمعية نادي الشاشة للطفولة والشباب بفندق أسد الأطلس. شكّلت فرصة لاكتساب معارف حول توظيف الذكاء الاصطناعي من كتابة السيناريو إلى المونتاج والمؤثرات البصرية.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ════════════════════════════════
-           ARTICLE DETAIL MODAL 2 — Festival
-           ════════════════════════════════ -->
-      <div class="article-modal-overlay" id="articleModalFestival">
-        <div class="article-modal">
-          <button class="modal-close-btn" id="modalCloseBtnFestival" aria-label="Fermer">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-
-          <!-- Hero image -->
-          <div class="modal-hero">
-            <img src="./images/festival/photo1.png" alt="Festival du Cinéma">
-            <div class="modal-hero-gradient"></div>
-            <span class="modal-hero-badge">Festival</span>
-            <h2 class="modal-hero-title">مشاركة أطر الجمعية في تنظيم الدورة 25 لمهرجان الأرز العالمي للفيلم القصير</h2>
-          </div>
-
-          <div class="modal-body">
-            <!-- Date -->
-            <div class="modal-date-line">
-              <div class="modal-date-icon">
-                <i class="fa-regular fa-calendar"></i>
-              </div>
-              <span class="modal-date-text">10 Novembre 2024</span>
-            </div>
-
-            <!-- Photo grid (1 large + 2 small) -->
-            <div class="modal-photo-grid">
-              <div class="modal-photo-item" style="grid-column: span 2; aspect-ratio: 16 / 9;">
-                <img src="./images/festival/photo1.png" alt="Festival Photo 1">
-                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-              <div class="modal-photo-item" style="aspect-ratio: 16 / 10;">
-                <img src="./images/festival/photo2.png" alt="Festival Photo 2">
-                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-              <div class="modal-photo-item" style="aspect-ratio: 16 / 10;">
-                <img src="./images/festival/photo3.png" alt="Festival Photo 3">
-                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
-
-            <!-- Full article text (Arabic RTL) -->
-            <div class="modal-article-text">
-              مشاركة أطر جمعية شعلة المستقبل للثقافة والتنمية المكتب المركزي في تنظيم الدورة 25 لمهرجان الأرز العالمي للفيلم القصير، المنظم من طرف جمعية نادي الشاشة للطفولة والشباب. 
-              <br><br>
-              حيث عرفت هذه الدورة تكريم عدة وجوه سينمائية مغربية والاحتفاء بالأخوين محمد وأحمد ملص من دولة سورية الشقيقة، وذلك من 7 إلى غاية 10 نونبر 2024.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ════════════════════════════════
-           ARTICLE DETAIL MODAL 3 — Partenariat
-           ════════════════════════════════ -->
-      <div class="article-modal-overlay" id="articleModalPartenariat">
-        <div class="article-modal">
-          <button class="modal-close-btn" id="modalCloseBtnPartenariat" aria-label="Fermer">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-
-          <!-- Hero image -->
-          <div class="modal-hero">
-            <img src="./images/partenariat/photo1.png" alt="Signature de conventions de partenariat">
-            <div class="modal-hero-gradient"></div>
-            <span class="modal-hero-badge">Partenariat</span>
-            <h2 class="modal-hero-title">مراسيم توقيع اتفاقيات الشراكة لتنشيط مؤسسات الشباب بإقليم إفران</h2>
-          </div>
-
-          <div class="modal-body">
-            <!-- Date -->
-            <div class="modal-date-line">
-              <div class="modal-date-icon">
-                <i class="fa-regular fa-calendar"></i>
-              </div>
-              <span class="modal-date-text">22 Novembre 2024</span>
-            </div>
-
-            <!-- Photo grid (2 columns) -->
-            <div class="modal-photo-grid" style="grid-template-columns: repeat(2, 1fr);">
-              <div class="modal-photo-item" style="aspect-ratio: 16 / 10;">
-                <img src="./images/partenariat/photo1.png" alt="Signature Photo 1">
-                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-              <div class="modal-photo-item" style="aspect-ratio: 16 / 10;">
-                <img src="./images/partenariat/photo2.png" alt="Signature Photo 2">
-                <span class="photo-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
-              </div>
-            </div>
-
-            <!-- Full article text (Arabic RTL) -->
-            <div class="modal-article-text">
-              مراسيم توقيع اتفاقيات الشراكة بين المديرية الإقليمية لقطاع الشباب بإفران والجمعيات المقبولة في العرض الوطني لتنشيط مؤسسات الشباب التي تشتغل في مجال الطفولة والشباب، والتي ترغب في مزاولة أنشطتها بمؤسسات الشباب (الدفعة الثانية).
-              <br><br>
-              يأتي هذا لتفعيل دور الشباب والمراكز السوسيو-رياضية في إطار العرض الوطني لتنشيط مؤسسات الشباب برسم موسم 2024 - 2025.
-            </div>
-          </div>
-        </div>
+      <!-- Section المسرح -->
+      <h2 class="section-title" data-aos="fade-up" dir="rtl" style="margin-top: 80px; font-family: var(--font-heading-ar); text-align: center;">المسرح</h2>
+      
+      <div id="theatre-container">
+        <div id="theatre-status" dir="rtl" style="text-align: center; font-family: var(--font-body-ar); color: var(--color-text-light); padding: 40px; font-size: 1.2rem;">جاري التحميل...</div>
+        <div id="theatre-grid" class="theatre-grid" style="display: none;"></div>
       </div>
 
       <!-- Agenda -->
@@ -655,7 +667,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom" style="border-top: none;">
-        <p>&copy; 2026 Association Chaâla pour la Culture et le Développement. Tous droits réservés.</p>
+        <p dir="rtl">&copy; 2026 جمعية شعلة المستقبل للثقافة و التنمية المكتب المركزي ازرو افران. جميع الحقوق محفوظة.</p>
       </div>
     </div>
   </footer>
@@ -663,93 +675,110 @@
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="./js/main.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // ── Modal logic 1 ──
-      const overlay   = document.getElementById('articleModal');
-      const btnOpen   = document.getElementById('btnOpenArticle');
-      const btnClose  = document.getElementById('modalCloseBtn');
+    // Unused modal event listeners removed as the real blog posts link directly to the association's Blogspot.
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      const feedUrl = "https://choalatlmost9bal.blogspot.com/feeds/posts/default/-/المسرح?alt=json&max-results=63";
+      const statusEl = document.getElementById("theatre-status");
+      const gridEl = document.getElementById("theatre-grid");
 
-      function openModal() {
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+      if (statusEl && gridEl) {
+        fetch(feedUrl)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then(data => {
+            const entries = data.feed && data.feed.entry;
+            if (!entries || entries.length === 0) {
+              statusEl.textContent = "لا توجد مقالات";
+              return;
+            }
+
+            statusEl.style.display = "none";
+            gridEl.style.display = "grid";
+            gridEl.innerHTML = "";
+
+            entries.forEach((entry, index) => {
+              const title = (entry.title && entry.title.$t) ? entry.title.$t : "";
+              const published = (entry.published && entry.published.$t) ? entry.published.$t : "";
+              
+              // Format date in Arabic
+              let formattedDate = "";
+              if (published) {
+                try {
+                  formattedDate = new Intl.DateTimeFormat('ar-MA', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  }).format(new Date(published));
+                } catch (e) {
+                  formattedDate = published;
+                }
+              }
+
+              // Get thumbnail or placeholder
+              let imgHtml = "";
+              if (entry.media$thumbnail && entry.media$thumbnail.url) {
+                const highResUrl = entry.media$thumbnail.url.replace('/s72-c/', '/s1600/');
+                imgHtml = `<img src="${highResUrl}" alt="${title}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">`;
+              } else {
+                imgHtml = `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; background-color: #f1f5f9; user-select: none;">🎭</div>`;
+              }
+
+              // Description: first 100 characters of entry.summary.$t
+              const rawSummary = (entry.summary && entry.summary.$t) ? entry.summary.$t : "";
+              const cleanSummary = rawSummary.replace(/<\/?[^>]+(>|$)/g, "").trim();
+              const description = cleanSummary.substring(0, 100) + (cleanSummary.length > 100 ? "..." : "");
+
+              // Link: entry.link[4].href
+              let link = "#";
+              if (entry.link && entry.link[4] && entry.link[4].href) {
+                link = entry.link[4].href;
+              } else if (entry.link) {
+                const altLink = entry.link.find(l => l.rel === "alternate");
+                if (altLink) link = altLink.href;
+              }
+
+              // Card HTML
+              const delay = (index % 3) * 100 + 100;
+              const card = document.createElement("div");
+              card.className = "news-card";
+              card.setAttribute("data-aos", "fade-up");
+              card.setAttribute("data-aos-delay", delay);
+              card.setAttribute("dir", "rtl");
+              card.innerHTML = `
+                <div class="news-img-wrapper" style="position: relative; height: 200px; overflow: hidden;">
+                  ${imgHtml}
+                  <span class="category-badge" style="direction: rtl; background-color: #dc2626; box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3); left: auto; right: 15px;">المسرح</span>
+                </div>
+                <div class="news-content" style="padding: 20px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                  <div>
+                    <h3 dir="rtl" style="font-family: var(--font-heading-ar); text-align: right; font-size: 1.15rem; margin-bottom: 12px; color: var(--color-primary);">${title}</h3>
+                    <p dir="rtl" style="font-family: var(--font-body-ar); text-align: right; color: var(--color-text-light); line-height: 1.6; font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${description}</p>
+                  </div>
+                </div>
+                <div class="news-card-footer" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-top: 1px solid #f1f5f9; background: #fafafa; direction: rtl;">
+                  <span class="news-date" dir="rtl" style="font-size: 0.85rem; color: #64748b; font-weight: 500; text-align: right;">${formattedDate}</span>
+                  <a href="${link}" target="_blank" class="btn" style="font-size: 0.8rem; padding: 6px 12px; border-radius: 8px; background-color: #dc2626; color: white; border: none; font-weight: 600; text-decoration: none; box-shadow: 0 2px 5px rgba(220, 38, 38, 0.2); transition: background-color 0.3s ease;">اقرأ المزيد</a>
+                </div>
+              `;
+              gridEl.appendChild(card);
+            });
+
+            if (window.AOS) {
+              window.AOS.refresh();
+            }
+          })
+          .catch(error => {
+            console.error("Error loading theatre posts:", error);
+            statusEl.textContent = "لا توجد مقالات";
+            statusEl.style.display = "block";
+            gridEl.style.display = "none";
+          });
       }
-      function closeModal() {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      btnOpen.addEventListener('click', (e) => {
-        e.preventDefault();
-        openModal();
-      });
-
-      btnClose.addEventListener('click', closeModal);
-
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeModal();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlay.classList.contains('active')) closeModal();
-      });
-
-      // ── Modal logic 2 (Festival) ──
-      const overlayFestival   = document.getElementById('articleModalFestival');
-      const btnOpenFestival   = document.getElementById('btnOpenArticleFestival');
-      const btnCloseFestival  = document.getElementById('modalCloseBtnFestival');
-
-      function openModalFestival() {
-        overlayFestival.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeModalFestival() {
-        overlayFestival.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      btnOpenFestival.addEventListener('click', (e) => {
-        e.preventDefault();
-        openModalFestival();
-      });
-
-      btnCloseFestival.addEventListener('click', closeModalFestival);
-
-      overlayFestival.addEventListener('click', (e) => {
-        if (e.target === overlayFestival) closeModalFestival();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlayFestival.classList.contains('active')) closeModalFestival();
-      });
-
-      // ── Modal logic 3 (Partenariat) ──
-      const overlayPartenariat   = document.getElementById('articleModalPartenariat');
-      const btnOpenPartenariat   = document.getElementById('btnOpenArticlePartenariat');
-      const btnClosePartenariat  = document.getElementById('modalCloseBtnPartenariat');
-
-      function openModalPartenariat() {
-        overlayPartenariat.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeModalPartenariat() {
-        overlayPartenariat.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      btnOpenPartenariat.addEventListener('click', (e) => {
-        e.preventDefault();
-        openModalPartenariat();
-      });
-
-      btnClosePartenariat.addEventListener('click', closeModalPartenariat);
-
-      overlayPartenariat.addEventListener('click', (e) => {
-        if (e.target === overlayPartenariat) closeModalPartenariat();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlayPartenariat.classList.contains('active')) closeModalPartenariat();
-      });
     });
   </script>
 </body>

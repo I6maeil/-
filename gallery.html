@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Galerie - Association Chaâla</title>
+  <title>معرض الصور - جمعية شعلة المستقبل للثقافة و التنمية المكتب المركزي ازرو افران</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- GLightbox CSS -->
@@ -45,45 +45,190 @@
       gap: 20px;
     }
     .gallery-item {
-      position: relative;
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      aspect-ratio: 1;
-      display: block;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .gallery-item:hover img {
-      transform: scale(1.1);
-    }
-    .gallery-overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(15, 23, 42, 0.7);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
-    }
-    .gallery-overlay i {
-      font-size: 2rem;
-      color: var(--color-accent);
-      margin-bottom: 10px;
-    }
-    .gallery-overlay h3 { color: white; font-size: 1.2rem; margin:0; }
-    .gallery-overlay p { font-size: 0.9rem; margin:0; }
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  display: block;
+  width: 100%; height: 220px;
+  border: 2px dashed #FF6B00;
+  transition: var(--transition);
+}
+.gallery-item:not(:has(.photo-placeholder)) {
+  border-style: solid;
+}
+.gallery-item:hover {
+  box-shadow: 0 0 10px #FF6B00;
+}
+.photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: #1a1a2e;
+  color: #fff;
+  font-size: 1.2rem;
+  position: relative;
+}
+.photo-placeholder .placeholder-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+.photo-placeholder::after {
+  content: "Ajouter une photo";
+  position: absolute; inset: 0;
+  background: rgba(255,107,0,0.7);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+}
+.photo-placeholder:hover::after { opacity: 1; }
+
+/* ── Video Cards ── */
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+@media (max-width: 900px) {
+  .videos-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .videos-grid { grid-template-columns: 1fr; }
+}
+
+.video-card {
+  position: relative;
+  height: 220px;
+  border-radius: 12px;
+  border: 2px solid #FF6B00;
+  overflow: hidden;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  background-color: #000;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.video-card:hover {
+  box-shadow: 0 0 20px rgba(255, 107, 0, 0.7);
+  transform: translateY(-3px);
+}
+
+/* Dark overlay */
+.video-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.video-card:hover .video-card-overlay {
+  background: rgba(0,0,0,0.2);
+}
+
+/* Play button */
+.play-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
+.video-card:hover .play-btn { transform: scale(1.12); }
+.play-btn svg {
+  width: 24px; height: 24px;
+  fill: #FF6B00;
+  margin-left: 3px; /* optical center for triangle */
+}
+
+/* Title gradient band */
+.video-card-title {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 30px 12px 10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: right;
+  direction: rtl;
+  line-height: 1.4;
+}
+
+/* ── Lightbox Modal ── */
+#yt-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.88);
+  align-items: center;
+  justify-content: center;
+}
+#yt-modal.open { display: flex; }
+#yt-modal-inner {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  aspect-ratio: 16/9;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(255,107,0,0.3);
+}
+#yt-modal-inner iframe {
+  width: 100%; height: 100%;
+  border: none;
+}
+#yt-modal-close {
+  position: absolute;
+  top: -40px; right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+#yt-modal-close:hover { color: #FF6B00; }
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+.gallery-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+.gallery-overlay i {
+  font-size: 2rem;
+  color: var(--color-accent);
+  margin-bottom: 10px;
+}
+.gallery-overlay h3 { color: white; font-size: 1.2rem; margin:0; }
+.gallery-overlay p { font-size: 0.9rem; margin:0; }
   </style>
 </head>
 <body>
@@ -92,7 +237,7 @@
     <div class="container nav-container">
       <div class="logo-container">
         <i class="fa-solid fa-fire-flame-curved logo-icon"></i>
-        <div class="logo-text">Association<br>Chaâla</div>
+        <div class="logo-text" dir="rtl" style="font-size:0.62rem;line-height:1.35;">جمعية شعلة المستقبل<br>للثقافة و التنمية<br>المكتب المركزي ازرو افران</div>
       </div>
       <nav class="nav-menu">
         <a href="index.html" class="nav-link">Accueil</a>
@@ -125,70 +270,182 @@
         <button class="filter-btn" data-filter="dev">Développement</button>
       </div>
 
-      <!-- Gallery Grid -->
-      <div class="gallery-grid" data-aos="fade-up" data-aos-delay="100">
-        <a href="https://images.unsplash.com/photo-1507676184212-d0330a151f93?q=80&w=2000&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="theatre">
-          <img src="https://images.unsplash.com/photo-1507676184212-d0330a151f93?q=80&w=800&auto=format&fit=crop" alt="Spectacle">
-          <div class="gallery-overlay">
-            <i class="fa-solid fa-magnifying-glass-plus"></i>
-            <h3>Spectacle "La Voix"</h3>
-            <p>Juin 2025</p>
+        <div class="gallery-grid" data-aos="fade-up" data-aos-delay="100">
+          <!-- Theatre photos -->
+          <a href="images/gallery/theatre1.jpg" class="gallery-item glightbox" data-category="theatre" data-gallery="theatre">
+            <img src="images/gallery/theatre1.jpg" alt="Théâtre 1">
+            <div class="gallery-overlay">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </div>
+          </a>
+          <a href="images/gallery/theatre2.jpg" class="gallery-item glightbox" data-category="theatre" data-gallery="theatre">
+            <img src="images/gallery/theatre2.jpg" alt="Théâtre 2">
+            <div class="gallery-overlay">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </div>
+          </a>
+          <a href="images/gallery/theatre3.jpg" class="gallery-item glightbox" data-category="theatre" data-gallery="theatre">
+            <img src="images/gallery/theatre3.jpg" alt="Théâtre 3">
+            <div class="gallery-overlay">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </div>
+          </a>
+          <a href="images/gallery/theatre4.jpg" class="gallery-item glightbox" data-category="theatre" data-gallery="theatre">
+            <img src="images/gallery/theatre4.jpg" alt="Théâtre 4">
+            <div class="gallery-overlay">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </div>
+          </a>
+          <a href="images/gallery/theatre5.jpg" class="gallery-item glightbox" data-category="theatre" data-gallery="theatre">
+            <img src="images/gallery/theatre5.jpg" alt="Théâtre 5">
+            <div class="gallery-overlay">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </div>
+          </a>
+          <a href="images/gallery/theatre6.jpg" class="gallery-item glightbox" data-category="theatre" data-gallery="theatre">
+            <img src="images/gallery/theatre6.jpg" alt="Théâtre 6">
+            <div class="gallery-overlay">
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </div>
+          </a>
+          <!-- Culture placeholders -->
+          <div class="gallery-item" data-category="culture">
+            <div class="photo-placeholder">
+              <span class="placeholder-icon">🎨</span>
+              <span class="placeholder-text">Photo Culture 1</span>
+            </div>
           </div>
-        </a>
-        
-        <a href="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?q=80&w=2070&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="culture">
-          <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?q=80&w=800&auto=format&fit=crop" alt="Culture">
-          <div class="gallery-overlay">
-            <i class="fa-solid fa-magnifying-glass-plus"></i>
-            <h3>Atelier Lecture</h3>
-            <p>Mars 2026</p>
+          <div class="gallery-item" data-category="culture">
+            <div class="photo-placeholder">
+              <span class="placeholder-icon">🎨</span>
+              <span class="placeholder-text">Photo Culture 2</span>
+            </div>
           </div>
-        </a>
+          <div class="gallery-item" data-category="culture">
+            <div class="photo-placeholder">
+              <span class="placeholder-icon">🎨</span>
+              <span class="placeholder-text">Photo Culture 3</span>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="culture">
+            <div class="photo-placeholder">
+              <span class="placeholder-icon">🎨</span>
+              <span class="placeholder-text">Photo Culture 4</span>
+            </div>
+          </div>
+          <!-- Development placeholders -->
+          <div class="gallery-item" data-category="dev">
+            <div class="photo-placeholder">
+              <span class="placeholder-icon">🌍</span>
+              <span class="placeholder-text">Photo Développement 1</span>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="dev">
+            <div class="photo-placeholder">
+              <span class="placeholder-icon">🌍</span>
+              <span class="placeholder-text">Photo Développement 2</span>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="dev">
+            <div class="photo-placeholder">
+              <span class="placeholder-icon">🌍</span>
+              <span class="placeholder-text">Photo Développement 3</span>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="dev">
+            <div class="photo-placeholder">
+              <span class="placeholder-icon">🌍</span>
+              <span class="placeholder-text">Photo Développement 4</span>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+    <!-- Video Section -->
+    <section class="section" id="videos">
+      <div class="container" data-aos="fade-up">
+        <h2 class="section-title">Nos Vidéos</h2>
+        <p class="section-subtitle">Revivez nos meilleurs moments en vidéo</p>
+        <div class="videos-grid">
 
-        <a href="https://images.unsplash.com/photo-1593113589914-075568e09151?q=80&w=2071&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="dev">
-          <img src="https://images.unsplash.com/photo-1593113589914-075568e09151?q=80&w=800&auto=format&fit=crop" alt="Développement">
-          <div class="gallery-overlay">
-            <i class="fa-solid fa-magnifying-glass-plus"></i>
-            <h3>Reboisement Azrou</h3>
-            <p>Février 2026</p>
+          <!-- Vidéo 1 -->
+          <div class="video-card"
+               style="background-image: url('https://img.youtube.com/vi/3RR_mp3x9Tg/maxresdefault.jpg');"
+               data-youtube-id="3RR_mp3x9Tg">
+            <div class="video-card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+            <div class="video-card-title">فيلم ماشي معاق من اخراج زهير براح</div>
           </div>
-        </a>
 
-        <a href="https://images.unsplash.com/photo-1460881680858-30d872d5b530?q=80&w=2071&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="dev">
-          <img src="https://images.unsplash.com/photo-1460881680858-30d872d5b530?q=80&w=800&auto=format&fit=crop" alt="Action Solidarité">
-          <div class="gallery-overlay">
-            <i class="fa-solid fa-magnifying-glass-plus"></i>
-            <h3>Distribution Hiver</h3>
-            <p>Décembre 2025</p>
+          <!-- Vidéo 2 -->
+          <div class="video-card"
+               style="background-image: url('https://img.youtube.com/vi/Lx-ki7jL2JU/maxresdefault.jpg');"
+               data-youtube-id="Lx-ki7jL2JU">
+            <div class="video-card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+            <div class="video-card-title">فيلم السيرور</div>
           </div>
-        </a>
 
-        <a href="https://images.unsplash.com/photo-1582055611189-cdb3c06637ba?q=80&w=1964&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="theatre">
-          <img src="https://images.unsplash.com/photo-1582055611189-cdb3c06637ba?q=80&w=800&auto=format&fit=crop" alt="Répétitions">
-          <div class="gallery-overlay">
-            <i class="fa-solid fa-magnifying-glass-plus"></i>
-            <h3>Répétitions Troupe</h3>
-            <p>Mai 2025</p>
+          <!-- Vidéo 3 -->
+          <div class="video-card"
+               style="background-image: url('https://img.youtube.com/vi/u0ywSlThjxU/maxresdefault.jpg');"
+               data-youtube-id="u0ywSlThjxU">
+            <div class="video-card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+            <div class="video-card-title">فيلم بصمت موت</div>
           </div>
-        </a>
 
-        <a href="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=1974&auto=format&fit=crop" class="gallery-item glightbox" data-gallery="gallery" data-category="culture">
-          <img src="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=800&auto=format&fit=crop" alt="Conférence">
-          <div class="gallery-overlay">
-            <i class="fa-solid fa-magnifying-glass-plus"></i>
-            <h3>Conférence Jeunesse</h3>
-            <p>Janvier 2026</p>
+          <!-- Vidéo 4 -->
+          <div class="video-card"
+               style="background-image: url('https://img.youtube.com/vi/ZG2OBf8dS1A/maxresdefault.jpg');"
+               data-youtube-id="ZG2OBf8dS1A">
+            <div class="video-card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+            <div class="video-card-title">حصة النادي السينماتي للجمعية</div>
           </div>
-        </a>
+
+          <!-- Vidéo 5 -->
+          <div class="video-card"
+               style="background-image: url('https://img.youtube.com/vi/OzU5UitVXjU/maxresdefault.jpg');"
+               data-youtube-id="OzU5UitVXjU">
+            <div class="video-card-overlay">
+              <div class="play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+              </div>
+            </div>
+            <div class="video-card-title">فيلم توعوي تربوي عن اخطار المخدرة</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- YouTube Lightbox Modal -->
+    <div id="yt-modal" role="dialog" aria-modal="true" aria-label="Lecteur vidéo">
+      <div id="yt-modal-inner">
+        <button id="yt-modal-close" aria-label="Fermer">&#x2715;</button>
+        <iframe id="yt-iframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
       </div>
     </div>
-  </section>
+    <!-- Footer -->
 
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom" style="border-top: none;">
-        <p>&copy; 2026 Association Chaâla pour la Culture et le Développement. Tous droits réservés.</p>
+        <p dir="rtl">&copy; 2026 جمعية شعلة المستقبل للثقافة و التنمية المكتب المركزي ازرو افران. جميع الحقوق محفوظة.</p>
       </div>
     </div>
   </footer>
@@ -212,13 +469,9 @@
 
       filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          // Remove active class
           filterBtns.forEach(b => b.classList.remove('active'));
-          // Add to current
           btn.classList.add('active');
-
           const filterValue = btn.getAttribute('data-filter');
-
           galleryItems.forEach(item => {
             if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
               item.style.display = 'block';
@@ -227,6 +480,42 @@
             }
           });
         });
+      });
+
+      // ── YouTube Lightbox ──
+      const modal    = document.getElementById('yt-modal');
+      const iframe   = document.getElementById('yt-iframe');
+      const closeBtn = document.getElementById('yt-modal-close');
+
+      function openModal(videoId) {
+        iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        iframe.src = '';
+        document.body.style.overflow = '';
+      }
+
+      document.querySelectorAll('.video-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = card.getAttribute('data-youtube-id');
+          if (id) openModal(id);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+
+      // Click outside inner box → close
+      modal.addEventListener('click', e => {
+        if (e.target === modal) closeModal();
+      });
+
+      // ESC key → close
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeModal();
       });
     });
   </script>
